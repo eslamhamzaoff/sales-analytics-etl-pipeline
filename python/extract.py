@@ -17,7 +17,7 @@ print('Missing Vales: ')
 print(df.isnull().sum())
 
 df = df.drop_duplicates()
-df.columns = [col.lower().replace(" ", "_") for col in df.columns]
+df.columns = [col.lower().replace(" ", "_").replace("-", "_") for col in df.columns]
 
 df["order_date"] = pd.to_datetime(df["order_date"])
 df["ship_date"]  = pd.to_datetime(df["ship_date"])
