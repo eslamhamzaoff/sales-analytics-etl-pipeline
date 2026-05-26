@@ -19,7 +19,17 @@ print(df.isnull().sum())
 df = df.drop_duplicates()
 df.columns = [col.lower().replace(" ", "_") for col in df.columns]
 
+df["order_date"] = pd.to_datetime(df["order_date"])
+df["ship_date"]  = pd.to_datetime(df["ship_date"])
+
+df["order_year"] = df["order_date"].dt.year
+df["order_month"] = df["order_date"].dt.month 
+
+df["profit_margin"] = (df["profit"] / df["sales"]) * 100
+
+
+
 df.to_csv(PROCESSED_DATA_PATH, index = False)
 
-print("Cleaned dataset saved successfully") 
+print("Extraction and transformation completed successfully") 
 
